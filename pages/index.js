@@ -1,20 +1,20 @@
 import React from "react";
 
+
+
+const ArrowFunction = _ =>
+  <div>
+    <h1>I am arrow function</h1>
+  </div>
+
+
+
 function CompA(){
   return (
     <>
+      <ArrowFunction />
       <h1>CompA</h1>
-      <p>Hello CompA</p>
-      <CompB />
-    </>
-  )
-}
-
-function CompB() {
-  return (
-    <>
-      <h1>CompB</h1>
-      <p>Hello CompB</p>
+      <p>Hello Comp A</p>
     </>
   )
 }
@@ -22,7 +22,7 @@ function CompB() {
 class CompC extends React.Component {
   render() {
     return (
-      <h1>CompC</h1>
+      <h1>Hello CompC</h1>
     )
   }
 }
@@ -30,11 +30,11 @@ class CompC extends React.Component {
 function Home() {
   return (
     <>
-      <h1>Hello world</h1>
+      <h1>Hello World</h1>
       <CompA />
-      <CompC />
     </>
   )
 }
+
 
 export default Home;
