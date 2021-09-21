@@ -18,11 +18,19 @@ class CompC extends React.Component {
 }
 
 function Home() {
-  const [myValue, mutateState] = useState(10);
+  const [myValue, setValue] = useState(10);
+
+  console.log("I am called initialy and when state is changed!");
+
+  const incrementValue = () => {
+    setValue(myValue + 1);
+  }
+
   return (
     <>
-      valueState: { myValue }
-      <h1>Hello World</h1>
+      CurrentState: { myValue }
+      <button onClick={incrementValue}>+</button>
+      <button>-</button>
       <CompA />
     </>
   )
