@@ -22,15 +22,11 @@ function Home() {
 
   console.log("I am called initialy and when state is changed!");
 
-  const incrementValue = () => {
-    setValue(myValue + 1);
-  }
-
   return (
     <>
       CurrentState: { myValue }
-      <button onClick={incrementValue}>+</button>
-      <button>-</button>
+      <button onClick={() => setValue(myValue + 1)}>+</button>
+      <button onClick={() => setValue(myValue - 1)}>-</button>
       <CompA />
     </>
   )
