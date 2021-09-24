@@ -11,11 +11,11 @@ function Home() {
     <>
       <Layout />
       <ResourceHighlight 
-        resources={resources}
+        resources={resources.slice(0, 3)}
       />
       <Newsletter />
       <ResourceList 
-        resources={resources}
+        resources={resources.slice(2)}
       />
       <Footer />
     </>
