@@ -10,10 +10,13 @@ function Home() {
   return (
     <>
       <Layout />
-      <ResourceHighlight />
+      <ResourceHighlight 
+        resources={resources}
+      />
       <Newsletter />
-      <ResourceList />
-      {JSON.stringify(resources)}
+      <ResourceList 
+        resources={resources}
+      />
       <Footer />
     </>
   )

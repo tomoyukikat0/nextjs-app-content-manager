@@ -5,7 +5,7 @@ const ResourceHighlight = ({resources}) => {
       <div className="hero-body">
         <div className="container">
           {
-            resources.map(respurce => {
+            resources.map(resource => {
               return (
                 <section key={resources.id} className="section">
                   <div className="columns">
