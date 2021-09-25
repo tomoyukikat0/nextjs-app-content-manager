@@ -1,6 +1,16 @@
 import Layout from "../../components/Layout";
+import { useState } from "react";
+
+const DEFAULT_DATA = {
+  title: "",
+  description: "",
+  link: "",
+  proprity: "2",
+  timeToFinish: 60
+}
 
 const ResourceCreate = () => {
+  const [form, setForm] = useState(DEFAULT_DATA);
 
   return (
     <Layout>
@@ -14,6 +24,7 @@ const ResourceCreate = () => {
                   <label className="label">Title</label>
                   <div className="control">
                   <input
+                      value={form.title}
                       className="input"
                       type="text"
                       placeholder="Learn Next JS and Sanity IO" />
@@ -23,6 +34,7 @@ const ResourceCreate = () => {
                   <label className="label">Description</label>
                   <div className="control">
                     <textarea
+                      value={form.description}
                       className="textarea"
                       placeholder="Learn these technologies because they are very popular and enable better SEO"></textarea>
                   </div>
@@ -31,6 +43,7 @@ const ResourceCreate = () => {
                   <label className="label">Link</label>
                   <div className="control">
                     <input
+                      value={form.link}
                       className="input"
                       type="text"
                       placeholder="https://academy.eincode.com" />
@@ -40,7 +53,7 @@ const ResourceCreate = () => {
                   <label className="label">Priority</label>
                   <div className="control">
                     <div className="select">
-                      <select>
+                      <select value={form.priority}>
                         <option>1</option>
                         <option>2</option>
                         <option>3</option>
@@ -54,8 +67,9 @@ const ResourceCreate = () => {
                     <input
                       className="input"
                       type="number"
-                      placeholder="60 (time is in minutes)" />
+                      placeholder="60" />
                   </div>
+                  <p className="help">Time is in minutes</p>
                 </div>
                 <div className="field is-grouped">
                   <div className="control">
