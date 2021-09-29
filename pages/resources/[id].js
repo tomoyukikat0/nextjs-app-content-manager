@@ -1,6 +1,8 @@
-import Layout from "../components/Layout"
+import Layout from "../../components/Layout"
+import { useRouter } from "next/router";
 
 const ResourceDetail = ({resource}) => {
+  const router = useRouter();
 
   return (
     <Layout>
@@ -25,8 +27,28 @@ const ResourceDetail = ({resource}) => {
   )
 }
 
-export async function getServerSideProps({params}) {
-  const dataRes = await fetch(`http://localhost:3001/api/resources${params.id}`);
+export async function getStaticPaths() {
+  const resData = await fetch("http://localhost:3001/api/resources");
+  
+  const data = await resData.json();
+  console.log(data)
+  const paths = data.map(resource => {
+    return {
+      params: { id: resource.id }
+    }
+  });
+
+  console.log(paths)
+
+  return {
+    paths,
+
+    fallback: false
+  }
+}
+
+export async function getStaticProps({params}) {
+  const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
   const data = await dataRes.json();
 
   return {
