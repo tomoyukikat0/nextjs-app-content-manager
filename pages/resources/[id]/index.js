@@ -1,9 +1,7 @@
-import Layout from "../../components/Layout"
-import { useRouter } from "next/router";
+import Layout from "../../../components/Layout"
+import Link from "next/link";
 
 const ResourceDetail = ({resource}) => {
-  const router = useRouter();
-
   return (
     <Layout>
       <section className="hero ">
@@ -15,7 +13,12 @@ const ResourceDetail = ({resource}) => {
                   <div className="content is-medium">
                     <h2 className="subtitle is-4">{resource.createdAt}</h2>
                     <h1 className="title">{resource.title}</h1>
-                    <p>{resource.prescription}</p>
+                    <p>{resource.description}</p>
+                    <Link href={`/resources/${resource.id}/edit`}>
+                      <a className="button is-warning">
+                        Update
+                      </a>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -27,35 +30,14 @@ const ResourceDetail = ({resource}) => {
   )
 }
 
-export async function getStaticPaths() {
-  const resData = await fetch("http://localhost:3001/api/resources");
-  
-  const data = await resData.json();
-  console.log(data)
-  const paths = data.map(resource => {
-    return {
-      params: { id: resource.id }
-    }
-  });
-
-  console.log(paths)
-
-  return {
-    paths,
-
-    fallback: false
-  }
-}
-
-export async function getStaticProps({params}) {
+export async function getServerSideProps({params}) {
   const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
   const data = await dataRes.json();
 
   return {
     props: {
       resource: data
-    },
-    revalidate: 1
+    }
   }
 }
 
