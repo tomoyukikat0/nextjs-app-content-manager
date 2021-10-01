@@ -27,16 +27,20 @@ const ResourceDetail = ({resource}) => {
                     <h1 className="title">{resource.title}</h1>
                     <p>{resource.description}</p>
                     <p>Time to finish: {resource.timeToFinish}</p>
-                    <Link href={`/resources/${resource.id}/edit`}>
-                      <a className="button is-warning">
-                        Update
-                      </a>
-                    </Link>
-                    <button
-                      onClick={activeResource}
-                      className="button is-success ml-1">
-                        Active
-                    </button>
+                    { resource.status === "inactive" &&
+                      <>
+                        <Link href={`/resources/${resource.id}/edit`}>
+                          <a className="button is-warning">
+                            Update
+                          </a>
+                        </Link>
+                        <button
+                          onClick={activeResource}
+                          className="button is-success ml-1">
+                          Activate
+                        </button>
+                      </>
+                    }
                   </div>
                 </div>
               </div>
@@ -49,7 +53,7 @@ const ResourceDetail = ({resource}) => {
 }
 
 export async function getServerSideProps({params}) {
-  const dataRes = await fetch(`http://localhost:3001/api/resources/${params.id}`);
+  const dataRes = await fetch(`${process.env.API_URL}/resources/${params.id}`);
   const data = await dataRes.json();
 
   return {
